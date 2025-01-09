@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Architecture.Services.Interfaces;
 using CalculatorProgram.Interfaces;
 
 namespace CalculatorProgram.Business
@@ -7,27 +8,49 @@ namespace CalculatorProgram.Business
     {
         private readonly ICalculatorValidator _calculatorValidator;
         private readonly IStringSplitter _stringSplitter;
+        private readonly ICalculatorCashService _calculatorCashService;
         private readonly List<ICalculatorObserver> _observers = new();
 
-        public CalculatorModel(ICalculatorValidator calculatorValidator, IStringSplitter stringSplitter)
+        public CalculatorModel(ICalculatorValidator calculatorValidator, IStringSplitter stringSplitter, 
+            ICalculatorCashService calculatorCashService)
         {
             _calculatorValidator = calculatorValidator;
             _stringSplitter = stringSplitter;
+            _calculatorCashService = calculatorCashService;
         }
 
         public string AddNumbers(string input)
         {
             if (!_calculatorValidator.IsAddExpressionValid(input))
             {
-                NotifyObserversAboutError(input);
-                return $"Error: {input}";
+                NotifyObserversAboutError();
+                string errorText = $"Error: {input}";
+                _calculatorCashService.Cash(errorText);
+                return errorText;
             }
 
             _stringSplitter.SplitBetweenPlusOperator(input, out int firstNumber, out int secondNumber);
 
-            return (firstNumber + secondNumber).ToString();
+            string result = (firstNumber + secondNumber).ToString();
+            _calculatorCashService.Cash(result);
+            return result;
         }
         
+        public string GetCash()
+        {
+            return _calculatorCashService.GetCash();
+        }
+        
+        public void SaveCurrentInput(string input)
+        {
+            _calculatorCashService.CashCurrentInput(input);
+        }
+
+        public string GetCurrentInput()
+        {
+            return _calculatorCashService.CurrentInput;
+        }
+
         public void Subscribe(ICalculatorObserver observer)
         {
             _observers.Add(observer);
@@ -38,10 +61,10 @@ namespace CalculatorProgram.Business
             _observers.Remove(observer);
         }
 
-        private void NotifyObserversAboutError(string input)
+        private void NotifyObserversAboutError()
         {
             foreach (ICalculatorObserver observer in _observers)
-                observer.GetInfo($"Error: {input}");
+                observer.OnError();
         }
     }
 }

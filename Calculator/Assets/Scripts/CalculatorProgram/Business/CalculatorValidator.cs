@@ -5,10 +5,11 @@ namespace CalculatorProgram.Business
 {
     public class CalculatorValidator : ICalculatorValidator
     {
+        private const string ValidationPattern = @"^\d+\+\d+$"; 
+        
         public bool IsAddExpressionValid(string input)
         {
-            string pattern = @"^\d+\+\d+$";
-            return Regex.IsMatch(input, pattern);
+            return Regex.IsMatch(input, ValidationPattern);
         }
     }
 }

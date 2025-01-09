@@ -32,7 +32,6 @@ namespace Architecture.States
             Transform container = _factory.CreateBaseWithObject<Transform>(ResourcesLoadingPaths.Container);
             Camera camera = _factory.CreateBaseWithContainer<Camera>(ResourcesLoadingPaths.Camera, container);
             Canvas menuUI = _factory.CreateBaseWithContainer<Canvas>(ResourcesLoadingPaths.MenuUI, container);
-            menuUI.worldCamera = camera;
         }
     }
 }

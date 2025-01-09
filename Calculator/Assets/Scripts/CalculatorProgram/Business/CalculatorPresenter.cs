@@ -1,5 +1,4 @@
-﻿using System;
-using CalculatorProgram.Interfaces;
+﻿using CalculatorProgram.Interfaces;
 
 namespace CalculatorProgram.Business
 {
@@ -17,16 +16,23 @@ namespace CalculatorProgram.Business
         public void OnResultButtonClicked()
         {
             string input = _view.InputText;
+            _model.AddNumbers(input);
+            _view.ShowResult(_model.GetCash());
+        }
 
-            try
-            {
-                string result = _model.AddNumbers(input);
-                _view.ShowResult(result);
-            }
-            catch (InvalidOperationException exception)
-            {
-                _view.ShowError(input);
-            }
+        public void ShowCash()
+        {
+            _view.ShowResult(_model.GetCash());
+        }
+
+        public void ShowCurrentInput()
+        {
+            _view.ShowCurrentInput(_model.GetCurrentInput());
+        }
+
+        public void SaveCurrentInput()
+        {
+            _model.SaveCurrentInput(_view.InputText);
         }
     }
 }

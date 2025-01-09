@@ -2,6 +2,6 @@
 {
     public interface ICalculatorObserver
     {
-        void GetInfo(string exception);
+        void OnError();
     }
 }

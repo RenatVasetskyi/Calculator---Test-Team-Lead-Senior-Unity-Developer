@@ -13,11 +13,14 @@ namespace Architecture.States
         
         private readonly IStateMachine _stateMachine;
         private readonly ISceneLoader _sceneLoader;
+        private readonly ICalculatorCashService _calculatorCashService;
 
-        public BootstrapState(IStateMachine stateMachine, ISceneLoader sceneLoader)
+        public BootstrapState(IStateMachine stateMachine, ISceneLoader sceneLoader, 
+            ICalculatorCashService calculatorCashService)
         {
             _stateMachine = stateMachine;
             _sceneLoader = sceneLoader;
+            _calculatorCashService = calculatorCashService;
         }
 
         public void Exit()
@@ -32,6 +35,8 @@ namespace Architecture.States
         private void Initialize()
         {
             Application.targetFrameRate = TargetFrameRate; 
+            
+            _calculatorCashService.Load();
             
             _stateMachine.Enter<MainMenuState>();
         }

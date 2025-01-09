@@ -7,6 +7,6 @@ namespace CalculatorProgram.Interfaces
         string InputText { get; }
         Button ResultButton { get; }
         void ShowResult(string result);
-        void ShowError(string errorMessage);
+        void ShowCurrentInput(string input);
     }
 }

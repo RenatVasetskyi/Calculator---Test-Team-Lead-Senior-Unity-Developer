@@ -1,5 +1,6 @@
 using Architecture.Services.Interfaces;
 using Architecture.States.Interfaces;
+using CalculatorProgram;
 using Data;
 using UnityEngine;
 
@@ -29,10 +30,9 @@ namespace Architecture.States
 
         private void Initialize()
         {
-            Transform container = _factory.CreateBaseWithObject<Transform>(ResourcesLoadingPaths.Container);
+            Transform container = _factory.CreateContainer();
             Camera camera = _factory.CreateBaseWithContainer<Camera>(ResourcesLoadingPaths.Camera, container);
-            Canvas calculatorUI = _factory.CreateCalculatorCanvas();
-            calculatorUI.worldCamera = camera;
+            Calculator calculatorUI = _factory.CreateCalculator();
         }
     }
 }

@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace CalculatorProgram.UI
+namespace CalculatorProgram.Business
 {
     [Serializable]
     public class CalculatorView : ICalculatorView
@@ -19,11 +19,12 @@ namespace CalculatorProgram.UI
         public void ShowResult(string result)
         {
             _resultText.text = result;
+            _inputField.text = string.Empty;
         }
 
-        public void ShowError(string result)
+        public void ShowCurrentInput(string input)
         {
-            _resultText.text = $"Error: {result}";
+            _inputField.text = input;
         }
     }
 }

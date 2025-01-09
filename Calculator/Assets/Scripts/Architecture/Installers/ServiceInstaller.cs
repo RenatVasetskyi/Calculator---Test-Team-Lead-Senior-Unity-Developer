@@ -14,6 +14,7 @@ namespace Architecture.Installers
             BindAssetProvider();
             BindBaseFactory();
             BindCalculatorFactory();
+            BindCalculatorCashService();
         }
         
         private void BindCoroutineRunner()
@@ -55,6 +56,14 @@ namespace Architecture.Installers
             Container
                 .Bind<ICalculatorFactory>()
                 .To<CalculatorFactory>()
+                .AsSingle();
+        }
+        
+        private void BindCalculatorCashService()
+        {
+            Container
+                .Bind<ICalculatorCashService>()
+                .To<CalculatorCashService>()
                 .AsSingle();
         }
     }

@@ -1,5 +1,4 @@
 ﻿using Architecture.Services.Interfaces;
-using Data;
 using UnityEngine;
 using Zenject;
 using Component = UnityEngine.Component;
@@ -21,6 +20,11 @@ namespace Architecture.Services
         public T CreateBaseWithContainer<T>(string path, Transform parent) where T : Component
         {
             return _container.InstantiatePrefabForComponent<T>(_assetProvider.Load<T>(path), parent);
+        }
+        
+        public GameObject CreateBaseWithContainer(GameObject prefab, Transform parent)
+        {
+            return _container.InstantiatePrefab(prefab, parent);
         }
 
         public T CreateBaseWithObject<T>(string path) where T : Component

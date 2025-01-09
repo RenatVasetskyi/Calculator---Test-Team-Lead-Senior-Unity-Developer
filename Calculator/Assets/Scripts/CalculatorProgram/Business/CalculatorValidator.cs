@@ -1,7 +1,7 @@
 ﻿using System.Text.RegularExpressions;
-using Calculator.Interfaces;
+using CalculatorProgram.Interfaces;
 
-namespace Calculator
+namespace CalculatorProgram.Business
 {
     public class CalculatorValidator : ICalculatorValidator
     {

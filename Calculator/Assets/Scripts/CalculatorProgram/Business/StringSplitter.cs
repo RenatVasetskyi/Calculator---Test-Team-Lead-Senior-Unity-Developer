@@ -1,6 +1,6 @@
-﻿using Calculator.Interfaces;
+﻿using CalculatorProgram.Interfaces;
 
-namespace Calculator
+namespace CalculatorProgram.Business
 {
     public class StringSplitter : IStringSplitter
     {

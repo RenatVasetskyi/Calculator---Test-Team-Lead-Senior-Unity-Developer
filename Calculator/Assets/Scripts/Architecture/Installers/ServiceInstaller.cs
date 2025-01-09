@@ -13,6 +13,7 @@ namespace Architecture.Installers
             BindSceneLoader();
             BindAssetProvider();
             BindBaseFactory();
+            BindCalculatorFactory();
         }
         
         private void BindCoroutineRunner()
@@ -46,6 +47,14 @@ namespace Architecture.Installers
             Container
                 .Bind<IFactory>()
                 .To<BaseFactory>()
+                .AsSingle();
+        }
+        
+        private void BindCalculatorFactory()
+        {
+            Container
+                .Bind<ICalculatorFactory>()
+                .To<CalculatorFactory>()
                 .AsSingle();
         }
     }

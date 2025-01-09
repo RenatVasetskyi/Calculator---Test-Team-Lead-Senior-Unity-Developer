@@ -1,4 +1,5 @@
-﻿using CalculatorProgram.Interfaces;
+﻿using System.Collections.Generic;
+using CalculatorProgram.Interfaces;
 
 namespace CalculatorProgram.Business
 {
@@ -6,6 +7,7 @@ namespace CalculatorProgram.Business
     {
         private readonly ICalculatorValidator _calculatorValidator;
         private readonly IStringSplitter _stringSplitter;
+        private readonly List<ICalculatorObserver> _observers = new();
 
         public CalculatorModel(ICalculatorValidator calculatorValidator, IStringSplitter stringSplitter)
         {
@@ -13,16 +15,33 @@ namespace CalculatorProgram.Business
             _stringSplitter = stringSplitter;
         }
 
-        public int AddNumbers(string input)
+        public string AddNumbers(string input)
         {
             if (!_calculatorValidator.IsAddExpressionValid(input))
             {
-                throw new System.InvalidOperationException();
+                NotifyObserversAboutError(input);
+                return $"Error: {input}";
             }
 
             _stringSplitter.SplitBetweenPlusOperator(input, out int firstNumber, out int secondNumber);
 
-            return firstNumber + secondNumber;
+            return (firstNumber + secondNumber).ToString();
+        }
+        
+        public void Subscribe(ICalculatorObserver observer)
+        {
+            _observers.Add(observer);
+        }
+
+        public void UnSubscribe(ICalculatorObserver observer)
+        {
+            _observers.Remove(observer);
+        }
+
+        private void NotifyObserversAboutError(string input)
+        {
+            foreach (ICalculatorObserver observer in _observers)
+                observer.GetInfo($"Error: {input}");
         }
     }
 }

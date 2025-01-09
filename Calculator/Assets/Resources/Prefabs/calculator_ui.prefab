@@ -438,6 +438,7 @@ GameObject:
   - component: {fileID: 5013806204227036558}
   - component: {fileID: 5013806204227036559}
   - component: {fileID: 5013806204227036656}
+  - component: {fileID: 6158840605198619653}
   m_Layer: 5
   m_Name: calculator_ui
   m_TagString: Untagged
@@ -527,6 +528,22 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &6158840605198619653
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5013806204227036657}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc3a316e5c6d4400bcb6bad02b7711fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _view:
+    _inputField: {fileID: 5013806205107473677}
+    _resultText: {fileID: 5013806204910846267}
+    _resultButton: {fileID: 5013806205040955969}
 --- !u!1 &5013806204701593330
 GameObject:
   m_ObjectHideFlags: 0

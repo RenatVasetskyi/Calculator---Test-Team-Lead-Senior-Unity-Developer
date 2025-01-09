@@ -4,7 +4,6 @@ using CalculatorProgram.Interfaces;
 namespace CalculatorProgram.Business
 {
     public class CalculatorPresenter : ICalculatorPresenter
-
     {
         private readonly ICalculatorView _view;
         private readonly ICalculator _model;
@@ -21,8 +20,8 @@ namespace CalculatorProgram.Business
 
             try
             {
-                int result = _model.AddNumbers(input);
-                _view.ShowResult(result.ToString());
+                string result = _model.AddNumbers(input);
+                _view.ShowResult(result);
             }
             catch (InvalidOperationException exception)
             {

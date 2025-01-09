@@ -1,11 +1,13 @@
-﻿using CalculatorProgram.Interfaces;
+﻿using System;
+using CalculatorProgram.Interfaces;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace CalculatorProgram.UI
 {
-    public class CalculatorView : MonoBehaviour, ICalculatorView
+    [Serializable]
+    public class CalculatorView : ICalculatorView
     {
         [SerializeField] private TMP_InputField _inputField;
         [SerializeField] private TextMeshProUGUI _resultText;

@@ -2,6 +2,8 @@
 {
     public interface ICalculator
     {
-        int AddNumbers(string input);
+        string AddNumbers(string input);
+        void Subscribe(ICalculatorObserver observer);
+        void UnSubscribe(ICalculatorObserver observer);
     }
 }

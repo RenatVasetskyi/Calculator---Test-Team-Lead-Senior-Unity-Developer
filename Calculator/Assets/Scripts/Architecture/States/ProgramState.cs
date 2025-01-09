@@ -10,9 +10,9 @@ namespace Architecture.States
         private const string ProgramScene = "Program";
         
         private readonly ISceneLoader _sceneLoader;
-        private readonly IFactory _factory;
+        private readonly ICalculatorFactory _factory;
 
-        public ProgramState(ISceneLoader sceneLoader, IFactory factory)
+        public ProgramState(ISceneLoader sceneLoader, ICalculatorFactory factory)
         {
             _sceneLoader = sceneLoader;
             _factory = factory;
@@ -29,8 +29,9 @@ namespace Architecture.States
 
         private void Initialize()
         {
-            Camera camera = _factory.CreateBaseWithContainer<Camera>(ResourcesLoadingPaths.Camera);
-            Canvas calculatorUI = _factory.CreateBaseWithContainer<Canvas>(ResourcesLoadingPaths.CalculatorUI);
+            Transform container = _factory.CreateBaseWithObject<Transform>(ResourcesLoadingPaths.Container);
+            Camera camera = _factory.CreateBaseWithContainer<Camera>(ResourcesLoadingPaths.Camera, container);
+            Canvas calculatorUI = _factory.CreateCalculatorCanvas();
             calculatorUI.worldCamera = camera;
         }
     }

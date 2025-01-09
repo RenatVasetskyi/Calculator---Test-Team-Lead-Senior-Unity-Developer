@@ -29,8 +29,9 @@ namespace Architecture.States
 
         private void Initialize()
         {
-            Camera camera = _factory.CreateBaseWithContainer<Camera>(ResourcesLoadingPaths.Camera);
-            Canvas menuUI = _factory.CreateBaseWithContainer<Canvas>(ResourcesLoadingPaths.MenuUI);
+            Transform container = _factory.CreateBaseWithObject<Transform>(ResourcesLoadingPaths.Container);
+            Camera camera = _factory.CreateBaseWithContainer<Camera>(ResourcesLoadingPaths.Camera, container);
+            Canvas menuUI = _factory.CreateBaseWithContainer<Canvas>(ResourcesLoadingPaths.MenuUI, container);
             menuUI.worldCamera = camera;
         }
     }

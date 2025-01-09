@@ -29,17 +29,6 @@ namespace Architecture.Services
             PlayerPrefs.Save();
         }
         
-        public void SaveSprite(string saveId, Sprite sprite)
-        {
-            if (sprite != null)
-            {
-                byte[] spriteBytes = sprite.texture.EncodeToPNG();
-
-                PlayerPrefs.SetString(saveId, System.Convert.ToBase64String(spriteBytes));
-                PlayerPrefs.Save();
-            }
-        }
-
         public int LoadInt(string saveId)
         {
             return PlayerPrefs.GetInt(saveId);
@@ -58,20 +47,6 @@ namespace Architecture.Services
         public string LoadString(string saveId)
         {
             return PlayerPrefs.GetString(saveId);
-        }
-
-        public Sprite LoadSprite(string saveId)
-        {
-            string base64String = PlayerPrefs.GetString(saveId);
-            byte[] spriteBytes = System.Convert.FromBase64String(base64String);
-
-            Texture2D texture = new Texture2D(2, 2);
-            texture.LoadImage(spriteBytes);
-
-            Sprite sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height),
-                Vector2.one * 0.5f);
-
-            return sprite;
         }
 
         public bool HasKey(string key)

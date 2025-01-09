@@ -33,7 +33,7 @@ namespace Architecture.States
         {
             Application.targetFrameRate = TargetFrameRate; 
             
-            _stateMachine.Enter<LoadProgramState>();
+            _stateMachine.Enter<MainMenuState>();
         }
     }
 }

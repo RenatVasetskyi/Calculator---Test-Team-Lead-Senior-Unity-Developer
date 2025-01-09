@@ -25,7 +25,8 @@ namespace Architecture.Installers
         private void BindStates()
         {
             Container.Bind<BootstrapState>().AsSingle();
-            Container.Bind<LoadProgramState>().AsSingle();
+            Container.Bind<MainMenuState>().AsSingle();
+            Container.Bind<ProgramState>().AsSingle();
         }
 
         private void AddStatesToStateMachine()
@@ -33,7 +34,8 @@ namespace Architecture.Installers
             IStateMachine stateMachine = Container.Resolve<IStateMachine>();
 
             stateMachine.States.Add(typeof(BootstrapState), Container.Resolve<BootstrapState>());
-            stateMachine.States.Add(typeof(LoadProgramState), Container.Resolve<LoadProgramState>());
+            stateMachine.States.Add(typeof(MainMenuState), Container.Resolve<MainMenuState>());
+            stateMachine.States.Add(typeof(ProgramState), Container.Resolve<ProgramState>());
         }
 
         private void BindStateMachine()

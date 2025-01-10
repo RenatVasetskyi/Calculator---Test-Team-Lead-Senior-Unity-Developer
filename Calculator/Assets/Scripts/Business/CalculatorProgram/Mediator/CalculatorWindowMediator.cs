@@ -27,7 +27,7 @@ namespace Business.CalculatorProgram.Mediator
             ICalculatorErrorWindow popup = _factory.CreateErrorPopup();
             popup.Initialize(this);
             
-            if (_factory.Calculator.GameObject != null){}
+            if (_factory.Calculator.GameObject != null)
                 _factory.Calculator.Hide();
         }
 

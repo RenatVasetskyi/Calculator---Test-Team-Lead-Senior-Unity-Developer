@@ -12,9 +12,6 @@ namespace Business.CalculatorProgram.Business
         private readonly Vector2 _minWindowSize = new(800, 520);
         private readonly Vector2 _maxWindowSize = new(1000, 1400);
         
-        private readonly Vector2 _minScrollViewSize = new(600, 0);
-        private readonly Vector2 _maxScrollViewSize = new(800, 800);
-        
         private readonly ICalculatorValidator _calculatorValidator;
         private readonly IStringSplitter _stringSplitter;
         private readonly ICalculatorCashService _calculatorCashService;

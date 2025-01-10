@@ -43,7 +43,7 @@ namespace Business.Architecture.Services
                 }
                 else
                 {
-                    Console.WriteLine("Файл не знайдено.");
+                    Debug.Log($"File not found: {FilePath}");
                 }
             }
             catch (Exception exception)

@@ -1,13 +1,14 @@
-﻿using UnityEngine;
+﻿using Business.CalculatorProgram.Resize.Interfaces;
+using UnityEngine;
 
-namespace Business.CalculatorProgram.Window
+namespace Business.CalculatorProgram.Resize
 {
-    public class WindowResizer : IWindowResizer
+    public class RectTransformResizer : IRectTransformResizer
     {
         private readonly Vector2 _minSize = new(800, 520);
         private readonly Vector2 _maxSize = new(1000, 1400);
 
-        public float ResizeY(RectTransform window, float addY)
+        public float ResizeY(RectTransform window, float addY, Vector2 minSize, Vector2 maxSize)
         {
             Vector2 contentSize = window.sizeDelta;
             float oldHeight = contentSize.y;

@@ -1,8 +1,8 @@
-﻿using Business.CalculatorProgram.Interfaces;
+﻿using Business.CalculatorProgram.Resize.Interfaces;
 using TMPro;
 using UnityEngine;
 
-namespace Business.CalculatorProgram.Text
+namespace Business.CalculatorProgram.Resize
 {
     public class TextResizer : ITextResizer
     {

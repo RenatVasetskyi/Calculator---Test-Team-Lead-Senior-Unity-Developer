@@ -10,6 +10,7 @@ namespace Business.CalculatorProgram.Business
     public class CalculatorView : ICalculatorView
     {
         [SerializeField] private RectTransform _window;
+        [SerializeField] private RectTransform _scrollView;
         [SerializeField] private TMP_InputField _inputField;
         [SerializeField] private TextMeshProUGUI _resultText;
         [SerializeField] private Button _resultButton;
@@ -18,6 +19,7 @@ namespace Business.CalculatorProgram.Business
         public string InputText => _inputField.text;
         public Button ResultButton => _resultButton;
         public RectTransform Window => _window;
+        public RectTransform ScrollViewRectTransform => _scrollView;
 
         public void ShowResult(string result)
         {

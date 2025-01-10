@@ -10,6 +10,7 @@ namespace Business.CalculatorProgram.Interfaces
         string InputText { get; }
         Button ResultButton { get; }
         RectTransform Window { get; }
+        RectTransform ScrollViewRectTransform { get; }
         void ShowResult(string result);
         void ShowCurrentInput(string input);
     }

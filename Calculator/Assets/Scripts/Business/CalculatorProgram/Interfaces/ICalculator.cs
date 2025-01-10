@@ -9,8 +9,8 @@ namespace Business.CalculatorProgram.Interfaces
         string GetCash();
         void SaveCurrentInput(string input);
         string GetCurrentInput();
-        float ChangeTextSizeY(TextMeshProUGUI textComponent, RectTransform rectTransform);
-        float ResizeWindowY(RectTransform window, float addY);
+        float ResizeY(TextMeshProUGUI textComponent, RectTransform textRectTransform,
+            RectTransform windowRectTransform, RectTransform scrollViewRectTransform);
         void Subscribe(ICalculatorObserver observer);
         void UnSubscribe(ICalculatorObserver observer);
     }

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Business.Architecture.Services.Interfaces;
 using Business.CalculatorProgram.Interfaces;
-using Business.CalculatorProgram.Window;
+using Business.CalculatorProgram.Resize.Interfaces;
 using TMPro;
 using UnityEngine;
 
@@ -9,20 +9,26 @@ namespace Business.CalculatorProgram.Business
 {
     public class CalculatorModel : ICalculator
     {
+        private readonly Vector2 _minWindowSize = new(800, 520);
+        private readonly Vector2 _maxWindowSize = new(1000, 1400);
+        
+        private readonly Vector2 _minScrollViewSize = new(600, 0);
+        private readonly Vector2 _maxScrollViewSize = new(800, 800);
+        
         private readonly ICalculatorValidator _calculatorValidator;
         private readonly IStringSplitter _stringSplitter;
         private readonly ICalculatorCashService _calculatorCashService;
         private readonly List<ICalculatorObserver> _observers = new();
-        private readonly IWindowResizer _windowResizer;
+        private readonly IRectTransformResizer _rectTransformResizer;
         private readonly ITextResizer _textResizer;
 
         public CalculatorModel(ICalculatorValidator calculatorValidator, IStringSplitter stringSplitter, 
-            ICalculatorCashService calculatorCashService, IWindowResizer windowResizer, ITextResizer textResizer)
+            ICalculatorCashService calculatorCashService, IRectTransformResizer rectTransformResizer, ITextResizer textResizer)
         {
             _calculatorValidator = calculatorValidator;
             _stringSplitter = stringSplitter;
             _calculatorCashService = calculatorCashService;
-            _windowResizer = windowResizer;
+            _rectTransformResizer = rectTransformResizer;
             _textResizer = textResizer;
         }
 
@@ -57,15 +63,13 @@ namespace Business.CalculatorProgram.Business
         {
             return _calculatorCashService.CurrentInput;
         }
-        
-        public float ChangeTextSizeY(TextMeshProUGUI textComponent, RectTransform rectTransform)
-        {
-            return _textResizer.ChangeTextSizeY(textComponent, rectTransform);
-        }
 
-        public float ResizeWindowY(RectTransform window, float addY)
+        public float ResizeY(TextMeshProUGUI textComponent, RectTransform textRectTransform, 
+            RectTransform windowRectTransform, RectTransform scrollViewRectTransform)
         {
-            return _windowResizer.ResizeY(window, addY);
+            float addedTextSize = ChangeTextSizeY(textComponent, textRectTransform);
+            _rectTransformResizer.ResizeY(windowRectTransform, addedTextSize, _minWindowSize, _maxWindowSize);
+            return addedTextSize;
         }
 
         public void Subscribe(ICalculatorObserver observer)
@@ -76,6 +80,11 @@ namespace Business.CalculatorProgram.Business
         public void UnSubscribe(ICalculatorObserver observer)
         {
             _observers.Remove(observer);
+        }
+        
+        private float ChangeTextSizeY(TextMeshProUGUI textComponent, RectTransform rectTransform)
+        {
+            return _textResizer.ChangeTextSizeY(textComponent, rectTransform);
         }
         
         private void NotifyObserversAboutError()

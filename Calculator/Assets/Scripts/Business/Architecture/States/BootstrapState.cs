@@ -38,6 +38,7 @@ namespace Business.Architecture.States
             Application.targetFrameRate = TargetFrameRate; 
             
             _calculatorCashService.Load();
+            _calculatorCashService.Clear();
             
             _stateMachine.Enter<MainMenuState>();
         }

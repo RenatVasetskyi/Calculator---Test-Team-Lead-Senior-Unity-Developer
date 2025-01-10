@@ -38,8 +38,7 @@ namespace Business.CalculatorProgram.Business
 
         public void Resize()
         {
-           float textSizeChange = _model.ChangeTextSizeY(_view.ResultText, _view.ResultText.rectTransform);
-           _model.ResizeWindowY(_view.Window, textSizeChange);
+           _model.ResizeY(_view.ResultText, _view.ResultText.rectTransform, _view.Window, _view.ScrollViewRectTransform);
         }
     }
 }

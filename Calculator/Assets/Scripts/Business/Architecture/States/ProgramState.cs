@@ -1,5 +1,6 @@
 using Business.Architecture.Services.Interfaces;
 using Business.Architecture.States.Interfaces;
+using Business.CalculatorProgram.Mediator.Interfaces;
 using Business.Data;
 using Mono;
 using UnityEngine;
@@ -32,7 +33,7 @@ namespace Business.Architecture.States
         {
             Transform container = _factory.CreateContainer();
             Camera camera = _factory.CreateBaseWithContainer<Camera>(ResourcesLoadingPaths.Camera, container);
-            Calculator calculatorUI = _factory.CreateCalculator();
+            ICalculatorWindow calculatorUI = _factory.CreateCalculator();
         }
     }
 }

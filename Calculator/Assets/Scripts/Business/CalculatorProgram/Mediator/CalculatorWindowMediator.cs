@@ -1,7 +1,7 @@
 ﻿using Business.Architecture.Services.Interfaces;
+using Business.CalculatorProgram.Error.Interfaces;
 using Business.CalculatorProgram.Interfaces;
 using Business.CalculatorProgram.Mediator.Interfaces;
-using Mono;
 
 namespace Business.CalculatorProgram.Mediator
 {
@@ -24,7 +24,7 @@ namespace Business.CalculatorProgram.Mediator
 
         public void ShowErrorWindow()
         {
-            CalculatorErrorWindow popup = _factory.CreateErrorPopup();
+            ICalculatorErrorWindow popup = _factory.CreateErrorPopup() as ICalculatorErrorWindow;
             popup.Initialize(this);
             
             if (_factory.Calculator != null)

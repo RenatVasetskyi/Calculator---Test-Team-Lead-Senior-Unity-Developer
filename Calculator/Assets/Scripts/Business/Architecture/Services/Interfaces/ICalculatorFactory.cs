@@ -1,4 +1,5 @@
-﻿using Mono;
+﻿using Business.CalculatorProgram.Error.Interfaces;
+using Business.CalculatorProgram.Mediator.Interfaces;
 using UnityEngine;
 
 namespace Business.Architecture.Services.Interfaces
@@ -6,10 +7,10 @@ namespace Business.Architecture.Services.Interfaces
     public interface ICalculatorFactory : IFactory
     {
         Transform Container { get; }
-        Calculator Calculator { get; }
-        CalculatorErrorWindow CalculatorErrorWindow { get; }
+        ICalculatorWindow Calculator { get; }
+        ICalculatorErrorWindow CalculatorErrorWindow { get; }
         Transform CreateContainer();
-        Calculator CreateCalculator();
-        CalculatorErrorWindow CreateErrorPopup();
+        ICalculatorWindow CreateCalculator();
+        ICalculatorErrorWindow CreateErrorPopup();
     }
 }

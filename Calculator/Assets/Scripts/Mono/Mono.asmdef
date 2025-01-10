@@ -1,0 +1,16 @@
+{
+    "name": "Mono",
+    "rootNamespace": "",
+    "references": [
+        "GUID:b47097cac0d3c284a891485b1e5acfb5"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

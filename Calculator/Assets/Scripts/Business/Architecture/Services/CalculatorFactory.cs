@@ -1,6 +1,7 @@
 ﻿using Business.Architecture.Services.Interfaces;
+using Business.CalculatorProgram.Error.Interfaces;
+using Business.CalculatorProgram.Mediator.Interfaces;
 using Business.Data;
-using Mono;
 using UnityEngine;
 using Zenject;
 
@@ -8,12 +9,16 @@ namespace Business.Architecture.Services
 {
     public class CalculatorFactory : BaseFactory, ICalculatorFactory
     {
-        public Calculator Calculator { get; private set; }
-        public CalculatorErrorWindow CalculatorErrorWindow { get; private set; }
+        private readonly IAssetProvider _assetProvider;
+        public ICalculatorWindow Calculator { get; private set; }
+        public ICalculatorErrorWindow CalculatorErrorWindow { get; private set; }
         public Transform Container { get; private set; }
-        
-        protected CalculatorFactory(DiContainer container, 
-            IAssetProvider assetProvider) : base(container, assetProvider) { }
+
+        protected CalculatorFactory(DiContainer container,
+            IAssetProvider assetProvider) : base(container, assetProvider)
+        {
+            _assetProvider = assetProvider;
+        }
 
         public Transform CreateContainer()
         {
@@ -21,17 +26,18 @@ namespace Business.Architecture.Services
             return Container;
         }
         
-        public Calculator CreateCalculator()
+        public ICalculatorWindow CreateCalculator()
         {
-            Calculator = CreateBaseWithContainer<Calculator>(ResourcesLoadingPaths.CalculatorUI, Container);
-            return Calculator;
+            GameObject calculator = CreateBaseWithContainer(_assetProvider
+                .Load<GameObject>(ResourcesLoadingPaths.CalculatorUI), Container);
+            return calculator.GetComponent<ICalculatorWindow>();
         }
 
-        public CalculatorErrorWindow CreateErrorPopup()
+        public ICalculatorErrorWindow CreateErrorPopup()
         {
-            CalculatorErrorWindow = CreateBaseWithContainer<CalculatorErrorWindow>(ResourcesLoadingPaths
-                .InputErrorPopup, Container);
-            return CalculatorErrorWindow;
+            GameObject calculator = CreateBaseWithContainer(_assetProvider
+                .Load<GameObject>(ResourcesLoadingPaths.InputErrorPopup), Container);
+            return calculator.GetComponent<ICalculatorErrorWindow>();
         }
     }
 }

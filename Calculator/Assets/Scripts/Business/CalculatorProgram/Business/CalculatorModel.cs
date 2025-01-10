@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Business.Architecture.Services.Interfaces;
 using Business.CalculatorProgram.Interfaces;
-using Business.CalculatorProgram.Text;
+using Business.CalculatorProgram.Window;
 using TMPro;
 using UnityEngine;
 
@@ -13,14 +13,17 @@ namespace Business.CalculatorProgram.Business
         private readonly IStringSplitter _stringSplitter;
         private readonly ICalculatorCashService _calculatorCashService;
         private readonly List<ICalculatorObserver> _observers = new();
-        private readonly ITextResizer _textResizer = new TextResizer();
+        private readonly IWindowResizer _windowResizer;
+        private readonly ITextResizer _textResizer;
 
         public CalculatorModel(ICalculatorValidator calculatorValidator, IStringSplitter stringSplitter, 
-            ICalculatorCashService calculatorCashService)
+            ICalculatorCashService calculatorCashService, IWindowResizer windowResizer, ITextResizer textResizer)
         {
             _calculatorValidator = calculatorValidator;
             _stringSplitter = stringSplitter;
             _calculatorCashService = calculatorCashService;
+            _windowResizer = windowResizer;
+            _textResizer = textResizer;
         }
 
         public string AddNumbers(string input)
@@ -55,9 +58,14 @@ namespace Business.CalculatorProgram.Business
             return _calculatorCashService.CurrentInput;
         }
         
-        public void ChangeTextSize(TextMeshProUGUI textComponent, RectTransform rectTransform)
+        public float ChangeTextSizeY(TextMeshProUGUI textComponent, RectTransform rectTransform)
         {
-            _textResizer.ChangeTextSizeY(textComponent, rectTransform);
+            return _textResizer.ChangeTextSizeY(textComponent, rectTransform);
+        }
+
+        public float ResizeWindowY(RectTransform window, float addY)
+        {
+            return _windowResizer.ResizeY(window, addY);
         }
 
         public void Subscribe(ICalculatorObserver observer)

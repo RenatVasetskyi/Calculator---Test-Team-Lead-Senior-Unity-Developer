@@ -3,6 +3,8 @@ using Business.CalculatorProgram.Business;
 using Business.CalculatorProgram.Interfaces;
 using Business.CalculatorProgram.Mediator;
 using Business.CalculatorProgram.Mediator.Interfaces;
+using Business.CalculatorProgram.Text;
+using Business.CalculatorProgram.Window;
 using UnityEngine;
 using Zenject;
 
@@ -33,14 +35,15 @@ namespace Mono
 
         private void Awake()
         {
-            _model = new CalculatorModel(new CalculatorValidator(), new StringSplitter(), _calculatorCashService);
+            _model = new CalculatorModel(new CalculatorValidator(), new StringSplitter(),
+                _calculatorCashService, new WindowResizer(), new TextResizer());
             _presenter = new CalculatorPresenter(_view, _model);
             _calculatorMediator = new CalculatorWindowMediator(_calculatorFactory);
             _model.Subscribe(_calculatorMediator);
             _view.ResultButton.onClick.AddListener(OnResultButtonClicked);
             _presenter.ShowCash();
             _presenter.ShowCurrentInput();
-            _presenter.ResizeText();
+            _presenter.Resize();
         }
 
         private void OnDestroy()

@@ -1,6 +1,6 @@
 ﻿using UnityEngine.UI;
 
-namespace Mono.Menu.Interfaces
+namespace Business.CalculatorProgram.Interfaces
 {
     public interface IMenuView
     {

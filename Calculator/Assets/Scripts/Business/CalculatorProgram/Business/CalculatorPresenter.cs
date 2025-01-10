@@ -18,7 +18,7 @@ namespace Business.CalculatorProgram.Business
             string input = _view.InputText;
             _model.AddNumbers(input);
             ShowCash();
-            ResizeText();
+            Resize();
         }
 
         public void ShowCash()
@@ -36,9 +36,10 @@ namespace Business.CalculatorProgram.Business
             _model.SaveCurrentInput(_view.InputText);
         }
 
-        public void ResizeText()
+        public void Resize()
         {
-            _model.ChangeTextSize(_view.ResultText, _view.ResultText.rectTransform);
+           float textSizeChange = _model.ChangeTextSizeY(_view.ResultText, _view.ResultText.rectTransform);
+           _model.ResizeWindowY(_view.Window, textSizeChange);
         }
     }
 }

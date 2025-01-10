@@ -1,9 +1,10 @@
 ﻿using Business.Architecture.States.Interfaces;
-using Mono.Menu.Interfaces;
+using Business.CalculatorProgram.Business;
+using Business.CalculatorProgram.Interfaces;
 using UnityEngine;
 using Zenject;
 
-namespace Mono.Menu
+namespace Mono
 {
     public class Menu : MonoBehaviour 
     {

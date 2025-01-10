@@ -6,6 +6,6 @@
         void ShowCash();
         void ShowCurrentInput();
         void SaveCurrentInput();
-        void ResizeText();
+        void Resize();
     }
 }

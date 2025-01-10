@@ -1,4 +1,5 @@
 ﻿using TMPro;
+using UnityEngine;
 using UnityEngine.UI;
 
 namespace Business.CalculatorProgram.Interfaces
@@ -8,6 +9,7 @@ namespace Business.CalculatorProgram.Interfaces
         TextMeshProUGUI ResultText { get; }
         string InputText { get; }
         Button ResultButton { get; }
+        RectTransform Window { get; }
         void ShowResult(string result);
         void ShowCurrentInput(string input);
     }

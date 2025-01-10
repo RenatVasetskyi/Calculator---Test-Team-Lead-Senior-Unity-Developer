@@ -1,8 +1,8 @@
 ﻿using Business.Architecture.States;
 using Business.Architecture.States.Interfaces;
-using Mono.Menu.Interfaces;
+using Business.CalculatorProgram.Interfaces;
 
-namespace Mono.Menu
+namespace Business.CalculatorProgram.Business
 {
     public class MenuModel : IMenu
     {

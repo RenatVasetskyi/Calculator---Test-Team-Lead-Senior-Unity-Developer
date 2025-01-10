@@ -1,9 +1,9 @@
 ﻿using System;
-using Mono.Menu.Interfaces;
+using Business.CalculatorProgram.Interfaces;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Mono.Menu
+namespace Business.CalculatorProgram.Business
 {
     [Serializable]
     public class MenuView : IMenuView

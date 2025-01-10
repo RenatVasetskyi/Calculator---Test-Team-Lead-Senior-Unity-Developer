@@ -1,4 +1,4 @@
-﻿namespace Mono.Menu.Interfaces
+﻿namespace Business.CalculatorProgram.Interfaces
 {
     public interface IMenu
     {

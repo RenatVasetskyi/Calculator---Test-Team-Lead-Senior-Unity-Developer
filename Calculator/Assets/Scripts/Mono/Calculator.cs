@@ -20,6 +20,8 @@ namespace Mono
         private ICalculator _model;
         private ICalculatorPresenter _presenter;
 
+        public GameObject GameObject => gameObject;
+
         [Inject]
         public void Inject(ICalculatorFactory calculatorFactory, ICalculatorCashService calculatorCashService)
         {

@@ -6,7 +6,6 @@ namespace Business.Architecture.Services.Interfaces
 {
     public interface ICalculatorFactory : IFactory
     {
-        Transform Container { get; }
         ICalculatorWindow Calculator { get; }
         ICalculatorErrorWindow CalculatorErrorWindow { get; }
         Transform CreateContainer();

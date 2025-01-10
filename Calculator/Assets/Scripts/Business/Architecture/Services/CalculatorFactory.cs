@@ -12,7 +12,8 @@ namespace Business.Architecture.Services
         private readonly IAssetProvider _assetProvider;
         public ICalculatorWindow Calculator { get; private set; }
         public ICalculatorErrorWindow CalculatorErrorWindow { get; private set; }
-        public Transform Container { get; private set; }
+        
+        private Transform _container;
 
         protected CalculatorFactory(DiContainer container,
             IAssetProvider assetProvider) : base(container, assetProvider)
@@ -22,22 +23,28 @@ namespace Business.Architecture.Services
 
         public Transform CreateContainer()
         {
-            Container = CreateBaseWithObject<Transform>(ResourcesLoadingPaths.Container);
-            return Container;
+            _container = CreateBaseWithObject<Transform>(ResourcesLoadingPaths.Container);
+            return _container;
         }
         
         public ICalculatorWindow CreateCalculator()
         {
             GameObject calculator = CreateBaseWithContainer(_assetProvider
-                .Load<GameObject>(ResourcesLoadingPaths.CalculatorUI), Container);
-            return calculator.GetComponent<ICalculatorWindow>();
+                .Load<GameObject>(ResourcesLoadingPaths.CalculatorUI), _container);
+            
+            Calculator = calculator.GetComponent<ICalculatorWindow>();
+            
+            return Calculator;
         }
 
         public ICalculatorErrorWindow CreateErrorPopup()
         {
             GameObject calculator = CreateBaseWithContainer(_assetProvider
-                .Load<GameObject>(ResourcesLoadingPaths.InputErrorPopup), Container);
-            return calculator.GetComponent<ICalculatorErrorWindow>();
+                .Load<GameObject>(ResourcesLoadingPaths.InputErrorPopup), _container);
+            
+            CalculatorErrorWindow = calculator.GetComponent<ICalculatorErrorWindow>();
+            
+            return CalculatorErrorWindow;
         }
     }
 }

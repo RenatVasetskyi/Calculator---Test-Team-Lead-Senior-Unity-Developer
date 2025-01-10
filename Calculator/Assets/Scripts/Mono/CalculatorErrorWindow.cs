@@ -13,6 +13,8 @@ namespace Mono
         [SerializeField] private CalculatorErrorWindowView _view;
         
         private ICalculatorWindowMediator _mediator;
+        
+        public GameObject GameObject => gameObject;
 
         public void Initialize(ICalculatorWindowMediator mediator)
         {

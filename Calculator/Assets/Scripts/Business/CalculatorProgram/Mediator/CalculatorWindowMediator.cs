@@ -18,16 +18,16 @@ namespace Business.CalculatorProgram.Mediator
         {
             _factory.CreateCalculator();
             
-            if (_factory.CalculatorErrorWindow != null)
+            if (_factory.CalculatorErrorWindow.GameObject != null)
                 _factory.CalculatorErrorWindow.Hide();
         }
 
         public void ShowErrorWindow()
         {
-            ICalculatorErrorWindow popup = _factory.CreateErrorPopup() as ICalculatorErrorWindow;
+            ICalculatorErrorWindow popup = _factory.CreateErrorPopup();
             popup.Initialize(this);
             
-            if (_factory.Calculator != null)
+            if (_factory.Calculator.GameObject != null){}
                 _factory.Calculator.Hide();
         }
 

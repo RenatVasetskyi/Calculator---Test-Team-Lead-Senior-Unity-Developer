@@ -4,8 +4,6 @@ using UnityEngine.Device;
 
 namespace Business.Architecture.States
 {
-    using IState = Interfaces.IState;
-
     public class BootstrapState : IState
     {
         private const string BootSceneName = "Boot";
@@ -38,7 +36,6 @@ namespace Business.Architecture.States
             Application.targetFrameRate = TargetFrameRate; 
             
             _calculatorCashService.Load();
-            _calculatorCashService.Clear();
             
             _stateMachine.Enter<MainMenuState>();
         }
